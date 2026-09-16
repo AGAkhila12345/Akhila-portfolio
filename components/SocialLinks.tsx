@@ -1,0 +1,8 @@
+﻿import {Mail} from 'lucide-react';
+import {profile} from '@/data/portfolio';
+export function SocialIcon({name}:{name:'github'|'linkedin'}) {
+  return name==='github'?<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.55.1.76-.24.76-.54v-2.07c-3.09.67-3.74-1.31-3.74-1.31-.51-1.28-1.23-1.62-1.23-1.62-1.01-.69.08-.68.08-.68 1.12.08 1.7 1.15 1.7 1.15.99 1.7 2.6 1.21 3.23.93.1-.72.39-1.21.71-1.49-2.47-.28-5.07-1.23-5.07-5.49 0-1.21.44-2.2 1.14-2.98-.11-.28-.49-1.41.11-2.94 0 0 .94-.3 3.05 1.14a10.6 10.6 0 0 1 5.55 0c2.12-1.44 3.05-1.14 3.05-1.14.6 1.53.22 2.66.11 2.94.71.78 1.14 1.77 1.14 2.98 0 4.27-2.6 5.21-5.08 5.48.4.35.75 1.02.75 2.06v3.04c0 .3.2.65.76.54A11.1 11.1 0 0 0 12 .9Z"/></svg>:<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5.4 7.9H1.8V22h3.6V7.9ZM3.6 2a2.1 2.1 0 1 0 0 4.2 2.1 2.1 0 0 0 0-4.2ZM22 13.9c0-4.2-2.2-6.2-5.1-6.2a4.4 4.4 0 0 0-4 2.2v-2H9.3V22h3.6v-7.8c0-2 1-3.2 2.7-3.2s2.8 1.1 2.8 3.2V22H22v-8.1Z"/></svg>;
+}
+export default function SocialLinks({iconsOnly=false,includeEmail=true}:{iconsOnly?:boolean,includeEmail?:boolean}) {
+ return <div className={'social-links '+(iconsOnly?'icons-only':'')}>{(['github','linkedin'] as const).map(name=><a key={name} href={profile[name]} target="_blank" rel="noopener noreferrer" aria-label={name==='github'?'Akhila on GitHub':'Akhila on LinkedIn'}><SocialIcon name={name}/>{!iconsOnly&&<span>{name==='github'?'GitHub':'LinkedIn'}</span>}</a>)}{includeEmail&&<a href={'mailto:'+profile.email} aria-label="Email Akhila"><Mail size={18}/>{!iconsOnly&&<span>Email</span>}</a>}</div>;
+}
